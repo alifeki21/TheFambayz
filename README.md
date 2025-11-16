@@ -30,18 +30,17 @@ Driver Assistant AI is a smart driving companion that evaluates driving habits s
 
 thefambayz/
 ├── backend/ # API, scoring logic, data storage
-├── mobile-app/ # Mobile application (Flutter or React Native)
-├── ai-models/ # AI models for driving behavior analysis
-├── docs/ # Technical documentation
+├── app/ # Mobile application (Flutter)
+├── dataset.py/ # AI model for driving behavior analysis
 └── README.md
 
 
 ## Technologies Used
 
-- **Backend:** Python (FastAPI)  
-- **Mobile App:** Flutter (recommended) or React Native  
-- **AI Models:** TensorFlow / PyTorch  
-- **Database:** MongoDB / PostgreSQL  
+- **Backend:** Python (Flask)  
+- **Mobile App:** Flutter  
+- **AI Model:** TensorFlow / PyTorch  
+- **Database:** PostgreSQL  
 
 ---
 
