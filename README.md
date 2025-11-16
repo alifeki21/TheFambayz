@@ -1,4 +1,4 @@
-#  Driver Insurance APP  
+#  Driver Insurance App  
 **AI-powered driving assistant that analyzes driver behavior and promotes safer mobility**
 
 Driver Assistant AI is a smart driving companion that evaluates driving habits such as speed, distraction, and harsh maneuvers. It generates a personalized safety score and provides real-time alerts to help drivers stay safe and aware on the road.
