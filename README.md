@@ -1,11 +1,11 @@
-# 🚗 Driver Assistant AI  
+#  Driver Insurance APP  
 **AI-powered driving assistant that analyzes driver behavior and promotes safer mobility**
 
 Driver Assistant AI is a smart driving companion that evaluates driving habits such as speed, distraction, and harsh maneuvers. It generates a personalized safety score and provides real-time alerts to help drivers stay safe and aware on the road.
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 - **Speed Monitoring** using GPS  
 - **Harsh Braking & Sudden Acceleration Detection** with intelligent safety warnings  
@@ -15,7 +15,7 @@ Driver Assistant AI is a smart driving companion that evaluates driving habits s
 
 ---
 
-## 🤖 AI Components
+##  AI Components
 
 - **Behavioral Analysis**  
   Detects patterns in speed, braking, and acceleration  
@@ -26,7 +26,7 @@ Driver Assistant AI is a smart driving companion that evaluates driving habits s
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 thefambayz/
 ├── backend/ # API, scoring logic, data storage
@@ -36,7 +36,7 @@ thefambayz/
 └── README.md
 
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Backend:** Python (FastAPI)  
 - **Mobile App:** Flutter (recommended) or React Native  
@@ -45,7 +45,7 @@ thefambayz/
 
 ---
 
-## 🎯 Project Objective
+## Project Objective
 
 Build an AI-powered application that improves road safety by:  
 - Detecting risky driving behaviors  
