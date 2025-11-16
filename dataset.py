@@ -13,11 +13,6 @@ feature_cols = [
     'euleranglerotatephone_roll','euleranglerotatephone_pitch','euleranglerotatephone_yaw'
 
 
-# Colonnes pertinentes
-feature_cols = [
-    'speed','acc_X','acc_Y','acc_Z','perclos',
-    'euleranglerotatephone','lightlevel'
-]
 
 # Vérification des valeurs manquantes
 missing_values = data[feature_cols].isnull().sum()
