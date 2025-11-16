@@ -35,6 +35,7 @@ thefambayz/
 ├── app/            # Mobile application (Flutter)
 ├── dataset.py      # AI model for driving behavior analysis
 └── README.md
+```
 
 
 ## Technologies Used
