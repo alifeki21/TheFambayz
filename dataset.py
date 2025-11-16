@@ -1,72 +1,62 @@
 import pandas as pd
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 
-data = pd.read_csv("driverSVT.csv")
+# Charger le dataset
+data = pd.read_csv("driverSVT.csv",nrows=500000)
 
-# Colonnes pertinentes
+# Colonnes utiles
 feature_cols = [
-    'speed','acc_X','acc_Y','acc_Z','perclos',
-    'euleranglerotatephone','lightlevel'
+    'speed','acc_X','acc_Y','acc_Z','perclos','lightlevel',
+    'euleranglerotatephone_roll','euleranglerotatephone_pitch','euleranglerotatephone_yaw'
 ]
 
 # Vérification des valeurs manquantes
 missing_values = data[feature_cols].isnull().sum()
-print("Valeurs manquantes par colonne :")
-print(missing_values)
+print("Valeurs manquantes :\n", missing_values)
+print("\nTotal :", missing_values.sum())
 
-print(f"\nTotal valeurs manquantes dans ces colonnes : {missing_values.sum()}")
+# Remplissage (par médiane)
+imputer = SimpleImputer(strategy='median')
+X = pd.DataFrame(imputer.fit_transform(data[feature_cols]), columns=feature_cols)
 
-from sklearn.impute import SimpleImputer
-#remplissage
-
-num_imputer = SimpleImputer(strategy='median')
-X = pd.DataFrame(num_imputer.fit_transform(data[feature_cols]), columns=feature_cols)
-
-# Vérification après remplissage
-print("\nValeurs manquantes après remplissage :")
+print("\nAprès remplissage :")
 print(X.isnull().sum())
 
-#fin du verification
-#training the model
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-
 # Cible
-y = data['dangerousstate']  # variable à prédire
+y = data['dangerousstate']
 le = LabelEncoder()
-y = le.fit_transform(y)  # encode en 0,1,2 si multi-classe
+y = le.fit_transform(y)
 
+# Split
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-from sklearn.ensemble import RandomForestClassifier
-
-# Initialiser le modèle
+# Modèle
 model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, Y_train)
 
-# Entraîner le modèle
-model.fit(X_train, y_train)
-
+# Fonction de prédiction
 def predict_driver_type(model, new_data, label_encoder):
-    
 
-    feature_cols = [
-        'speed','acc_X','acc_Y','acc_Z','perclos',
-        'euleranglerotatephone','lightlevel'
-    ]
-
-    # Vérifier que toutes les colonnes sont présentes
+    # Vérifier colonnes
     for col in feature_cols:
         if col not in new_data.columns:
-            raise ValueError(f"La colonne {col} est manquante dans les nouvelles données.")
+            raise ValueError(f"Colonne manquante : {col}")
 
-    # Remplissage des valeurs manquantes par la médiane
-    from sklearn.impute import SimpleImputer
+    # Remplir valeurs manquantes
     imputer = SimpleImputer(strategy='median')
-    X_new = pd.DataFrame(imputer.fit_transform(new_data[feature_cols]), columns=feature_cols)
+    X_new = pd.DataFrame(imputer.fit_transform(new_data[feature_cols]),
+                         columns=feature_cols)
 
-    # Prédiction (nombres)
-    predictions_num = model.predict(X_new)
+    # Prédiction de la classe (numérique)
+    pred_num = model.predict(X_new)
 
-    # Conversion en labels
-    predictions_labels = label_encoder.inverse_transform(predictions_num)
+    # Conversion en label d'origine
+    pred_label = label_encoder.inverse_transform(pred_num)
 
-    return predictions_labels
+    return pred_label
+
+
+
