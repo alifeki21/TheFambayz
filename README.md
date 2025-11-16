@@ -28,6 +28,7 @@ Driver Assistant AI is a smart driving companion that evaluates driving habits s
 
 ## Project Structure
 
+```text
 thefambayz/
 │
 ├── backend/        # API, scoring logic, data storage
