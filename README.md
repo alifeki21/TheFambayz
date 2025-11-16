@@ -43,7 +43,6 @@ thefambayz/
 - **Backend:** Python (Flask)  
 - **Mobile App:** Flutter  
 - **AI Model:** Scikit-learn  
-- **Database:** PostgreSQL  
 
 ---
 
